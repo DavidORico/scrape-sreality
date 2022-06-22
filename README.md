@@ -1,6 +1,6 @@
 ## How to run this project
 
-Prerequisites: python3, scrapy, psql
+Prerequisites: python3, scrapy, scrapyscript, psql
 
 In the repository call:
 ```
