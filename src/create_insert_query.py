@@ -13,6 +13,6 @@ for i in range(num_lines):
     else:
         query += '(\'' + Lines[i].rstrip('\n').rstrip(',') + '\'),\n'
 
-file = open('sql_queries/insert_query.sql', 'w')
+file = open('../sql_queries/insert_query.sql', 'w')
 file.write(query)
 file.close()
