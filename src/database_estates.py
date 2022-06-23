@@ -51,3 +51,6 @@ class DatabaseEstates:
 
     def get_all(self):
         return self.session.query(Estate).all()
+
+    def __del__(self):
+        self.session.close()
