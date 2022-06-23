@@ -29,7 +29,7 @@ class DatabaseEstates:
 
         self.engine = create_engine(self.db_string)
 
-        #Base.metadata.drop_all(self.engine)
+        Base.metadata.drop_all(self.engine)
         #print(self.engine.table_names())
         Base.metadata.create_all(self.engine)
         print(self.engine.table_names())
@@ -48,3 +48,6 @@ class DatabaseEstates:
 
         for est in estates:
             print(est)
+
+    def get_all(self):
+        return self.session.query(Estate).all()
