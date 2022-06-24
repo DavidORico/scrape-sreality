@@ -6,37 +6,25 @@ services:
   web:
     build:
       context: .
-<<<<<<< HEAD
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASS=example
       - POSTGRES_HOST=localhost
       - POSTGRES_PORT=5432
       - POSTGRES_DB=postgres
-=======
->>>>>>> 3d2574ce6e7633afa6786c76fe01d70a3f2226ff
     ports:
       - 8000:5000
     volumes:
       - ./:/app
-<<<<<<< HEAD
     depends_on:
       - db
-=======
->>>>>>> 3d2574ce6e7633afa6786c76fe01d70a3f2226ff
 
   db:
     image: postgres
     restart: always
     environment:
-<<<<<<< HEAD
       POSTGRES_PASSWORD: example
     ports:
       - 5432:5432
     expose:
       - 5432
-=======
-      POSTGRES_PASSWORD: burgermenu
-    ports:
-      - 5432:5432
->>>>>>> 3d2574ce6e7633afa6786c76fe01d70a3f2226ff
