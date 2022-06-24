@@ -1,0 +1,20 @@
+# Use postgres/example user/password credentials
+version: '3.3'
+
+services:
+
+  web:
+    build:
+      context: .
+    ports:
+      - 8000:5000
+    volumes:
+      - ./:/app
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: burgermenu
+    ports:
+      - 5432:5432
