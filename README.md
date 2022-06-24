@@ -1,24 +1,29 @@
 ## How to run this project
 
-Prerequisites: python3, scrapy, scrapyscript, psql
-
-In the repository call:
+1 Running the app directly with python <br /> <br />
+All Python packages can be installed using a requirements.txt file with pip or conda venv<br /> 
+set env variables in your ~/.bashrc
 ```
-scrapy crawl sreality -O estates.json
+export POSTGRES_USER=zelda
+export POSTGRES_DB=zelda
+export POSTGRES_PASS=burgermenu
+export POSTGRES_PORT=5432
+export POSTGRES_HOST=localhost
 ```
-This launches the spider that scrapes the https://www.sreality.cz/hledani/prodej/byty
-and saves the information about the 50 first posts into a JSON file
-
-Then run the python script that transforms the JSON file into an sql query 
-that inserts the document into the database.
+make sure that the psql server is running using
 ```
-python3 create_insert_query.py
+pg_lsclusters
 ```
-
-Finally connect to a database of your choice (I created a server on local host using pgAdmin)
-and run queries in this order
+if the cluster is down start it like so
 ```
-create_table.sql
-insert_query.sql
-view_estates.sql
+sudo pg_ctlcluster <Ver> <Cluster> start
+```
+Launch the app
+```
+python3 main.py
+```
+2 Running the app with docker compose <br /> <br />
+In stack.yml change env variables for your database then run
+```
+sudo docker-compose -f stack.yml up
 ```

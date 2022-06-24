@@ -1,4 +1,3 @@
-import os
 from sqlalchemy import create_engine, insert, select
 from sqlalchemy import Table, Column, Integer, String, ARRAY, MetaData
 from sqlalchemy.orm import declarative_base, sessionmaker
@@ -23,13 +22,18 @@ class Estate(Base):
 
 
 class DatabaseEstates:
-    def __init__(self, user=os.environ['POSTGRES_USER'], passwd=os.environ['POSTGRES_PASS'],
-                 host=os.environ['POSTGRES_HOST'], port=os.environ['POSTGRES_PORT'], db=os.environ['POSTGRES_DB']):
+<<<<<<< HEAD
+    def __init__(self, user=os.environ["POSTGRES_USER"], passwd=os.environ["POSTGRES_PASS"],
+                 host=os.environ["POSTGRES_HOST"], port=os.environ["POSTGRES_PORT"], db=os.environ["POSTGRES_DB"]):
+=======
+    def __init__(self, user='postgres', passwd='burgermenu',
+                 host='localhost', port='5432', db='postgres'):
+>>>>>>> 3d2574ce6e7633afa6786c76fe01d70a3f2226ff
         self.db_string = f"postgresql://{user}:{passwd}@{host}:{port}/{db}"
 
         self.engine = create_engine(self.db_string)
 
-        Base.metadata.drop_all(self.engine)
+        #Base.metadata.drop_all(self.engine)
         #print(self.engine.table_names())
         Base.metadata.create_all(self.engine)
         print(self.engine.table_names())
