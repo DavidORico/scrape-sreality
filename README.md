@@ -2,11 +2,11 @@
 
 1 Running the app directly with python <br /> <br />
 All Python packages can be installed using a requirements.txt file with pip or conda venv<br /> 
-set env variables in your ~/.bashrc
+set env variables in your ~/.bashrc so they correspond to a DB you want to use
 ```
-export POSTGRES_USER=zelda
-export POSTGRES_DB=zelda
-export POSTGRES_PASS=burgermenu
+export POSTGRES_USER=postgres
+export POSTGRES_DB=postgres
+export POSTGRES_PASS=example
 export POSTGRES_PORT=5432
 export POSTGRES_HOST=localhost
 ```
