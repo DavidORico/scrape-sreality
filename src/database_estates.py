@@ -34,23 +34,45 @@ class DatabaseEstates:
         Base.metadata.create_all(self.engine)
         print(self.engine.table_names())
 
-        Session = sessionmaker()
-        Session.configure(bind=self.engine)
-        self.session = Session()
+        self.Session = sessionmaker(bind=self.engine)
 
-    def insert(self, data):
+    def insert_all(self, data):
+        session = self.Session()
         estates = [Estate(est['name'], est['location'], est['photo_urls']) for est in data]
-        self.session.add_all(estates)
-        self.session.commit()
+        try:
+            session.add_all(estates)
+            session.commit()
+        except:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+
+    def process_item(self, item):
+        session = self.Session()
+        est = Estate(item['name'], item['location'], item['photo_urls'])
+
+        try:
+            session.add(est)
+            session.commit()
+        except:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+
+        return item
 
     def view_all(self):
-        estates = self.session.query(Estate).all()
+        session = self.Session()
+        estates = session.query(Estate).all()
 
         for est in estates:
             print(est)
+        session.close()
 
     def get_all(self):
-        return self.session.query(Estate).all()
-
-    def __del__(self):
-        self.session.close()
+        session = self.Session()
+        data = session.query(Estate).all()
+        session.close()
+        return data

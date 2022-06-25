@@ -18,7 +18,7 @@ def main():
     # initialize and add data to the database
     logging.info('Establishing connection to database.')
     db_estates = DatabaseEstates()
-    db_estates.insert(data)
+    db_estates.insert_all(data)
     #db_estates.view_all()
 
     # run web server that displays results on http://127.0.0.1:8080/show
