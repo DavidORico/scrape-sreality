@@ -2,8 +2,7 @@ from scrapyscript import Job, Processor
 import logging
 from spider.spiders.sreality_spider import SrealitySpider
 from src.database_estates import DatabaseEstates
-from http.server import HTTPServer
-from src.web_server import MyServer
+from src.flask_web_server import run_web_server
 
 
 def main():
@@ -23,18 +22,7 @@ def main():
 
     # run web server that displays results on http://127.0.0.1:8080/show
     logging.info('Creating python web server.')
-    hostName = "0.0.0.0"
-    serverPort = 8080
-    myserver = MyServer
-    myserver.data = db_estates.get_all()
-    webServer = HTTPServer((hostName, serverPort), myserver)
-    print("Server started http://%s:%s" % (hostName, serverPort))
-    try:
-        webServer.serve_forever()
-    except KeyboardInterrupt:
-        pass
-    webServer.server_close()
-    print("Server stopped.")
+    run_web_server(db_estates.get_all()[-50:])
 
 
 if __name__ == '__main__':
